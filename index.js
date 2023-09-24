@@ -9,8 +9,8 @@ io.on('connection', (socket) => {
     console.log('user connected ' + socket.id);
 
     socket.on('moveType', (playerMove) => {
-        const player2Mover = playerMove == 'X' ? 'O' : 'X';
-        socket.broadcast.emit('setPlayerRole', player2Mover);
+        const player2Mover = playerMove.data == 'X' ? 'O' : 'X';
+        socket.broadcast.emit('setPlayerRole', { id: playerMove.id, data: player2Mover });
     });
 
     socket.on('playerMarkMove', (move) => {
